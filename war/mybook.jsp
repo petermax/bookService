@@ -15,24 +15,35 @@
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Hello App Engine</title>
-  </head>
-
-  <body>
-    <h1>Hello App Engine!</h1>
+	<head>
+		<meta charset="UTF-8">
+		<title>Book Service</title>
+		<script src="./scripts/ajax-books.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<fieldset>
+			<legend>Show All books</legend>
+			<input type="button" value="Show All books"
+			       onclick='ajaxResult("All", "book-result")'/>
+		  <div id="book-result"></div>
+		</fieldset>
+	  
+	  
+	  
+	  
+	  <h1>Hello App Engine!</h1>
 	
-    <table>
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Available Servlets:</td>        
-      </tr>
-      <tr>
-        <td><a href="bookService">Book service</a></td>
-      </tr>
-    </table>
-  </body>
+	  <table>
+	    <tr>
+	      <td colspan="2" style="font-weight:bold;">Available Servlets:</td>        
+	    </tr>
+	    <tr>
+	      <td><a href="bookService">Book service</a></td>
+	    </tr>
+	  </table>
+	</body>
 </html>
 
 <%-- //[END all]--%>

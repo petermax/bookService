@@ -12,6 +12,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>bookService</servlet-name>
 		<url-pattern>/bookService</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	  <servlet-name>Find all books in HTML version</servlet-name>
+	  <servlet-class>com.bookService.bookAllServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>Find all books in HTML version</servlet-name>
+	  <url-pattern>/All</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>mybook.jsp</welcome-file>
 	</welcome-file-list>
