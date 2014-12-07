@@ -31,6 +31,8 @@ public class bookServiceServlet extends HttpServlet {
 		
 		resp.setContentType("text/plain");
 		
+		
+		
 		for (Entity result : pq.asIterable()) {
 			  String author = (String) result.getProperty("author");
 			  String title = (String) result.getProperty("title");
