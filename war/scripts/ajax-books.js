@@ -15,14 +15,15 @@ function getRequestObject() {
 // Make an HTTP request to the given address. 
 // Display result in the HTML element that has given ID.
 
-function ajaxResult(book, resultRegion) {
+function ajaxResult(format, resultRegion) {
   var request = getRequestObject();
   request.onreadystatechange = 
     function() { 
 	  showResponseText(request, resultRegion); 
 	};
-  request.open("GET", book, true);
-  request.send(null);
+  request.open("GET", format, true);
+  request.send();
+
 }
 
 //Put response text in the HTML element that has given ID.

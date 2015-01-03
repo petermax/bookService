@@ -1,49 +1,27 @@
-<%-- //[START all]--%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.google.appengine.api.users.User" %>
-<%@ page import="com.google.appengine.api.users.UserService" %>
-<%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
-<%-- //[START imports]--%>
-<%@ page import="com.google.appengine.api.datastore.DatastoreService" %>
-<%@ page import="com.google.appengine.api.datastore.DatastoreServiceFactory" %>
-<%@ page import="com.google.appengine.api.datastore.Entity" %>
-<%@ page import="com.google.appengine.api.datastore.FetchOptions" %>
-<%@ page import="com.google.appengine.api.datastore.Key" %>
-<%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
-<%@ page import="com.google.appengine.api.datastore.Query" %>
-<%-- //[END imports]--%>
-<%@ page import="java.util.List" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Book Service</title>
-		<script src="./scripts/ajax-books.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="styles/jquery-ui/jquery-ui.css" type="text/css"/>
+		<link rel="stylesheet" href="styles/extra-styles.css" type="text/css"/>
+		<script src="./scripts/jquery.js" type="text/javascript"></script>
+		<script src="./scripts/jquery-ui.js" type="text/javascript"></script>
+		<script src="./scripts/jquery-ui-basics.js" type="text/javascript"></script>
+		<script src="scripts/ajax-books.js" type="text/javascript"></script>
+
 	</head>
 	<body>
 		<fieldset>
-			<legend>Show All books</legend>
-			<input type="button" value="Show All books"
-			       onclick='ajaxResult("All", "book-result")'/>
-		  <div id="book-result"></div>
+			<legend>Tabbed Panels with Ajax Content</legend>
+				<div id="ajax-tabbed-panel-div">
+					<ul>
+						<li><a href="addbook.jsp">Add book</a></li>
+						<li><a href="">Search Book</a></li>
+						<li><a href="all-books.jsp" >Display All Books</a></li>
+					</ul>
+				</div>
 		</fieldset>
-	  
-	  
-	  
-	  
-	  <h1>Hello App Engine!</h1>
-	
-	  <table>
-	    <tr>
-	      <td colspan="2" style="font-weight:bold;">Available Servlets:</td>        
-	    </tr>
-	    <tr>
-	      <td><a href="bookService">Book service</a></td>
-	    </tr>
-	  </table>
+		<br/>
 	</body>
 </html>
-
-<%-- //[END all]--%>

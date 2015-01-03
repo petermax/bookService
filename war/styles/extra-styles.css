@@ -1,0 +1,16 @@
+.title { 
+  background-color: #ef8429;
+  font-size: 200%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.effects {
+	width: 200px; 
+}
+.effects-header {
+	margin: 0;
+}
+.fancy-menu {
+  opacity: 0.8;
+  max-height: 140px;
+  overflow-y: auto;
+}

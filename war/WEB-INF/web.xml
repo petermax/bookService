@@ -6,19 +6,43 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
 	    <servlet-name>bookService</servlet-name>
-	    <servlet-class>com.bookService.bookServiceServlet</servlet-class>
+	    <servlet-class>com.bookService.BookList</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>bookService</servlet-name>
 		<url-pattern>/bookService</url-pattern>
 	</servlet-mapping>
 	<servlet>
-	  <servlet-name>Find all books in HTML version</servlet-name>
-	  <servlet-class>com.bookService.bookAllServlet</servlet-class>
+	  <servlet-name>text</servlet-name>
+	  <servlet-class>com.bookService.BookList</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	  <servlet-name>Find all books in HTML version</servlet-name>
+	  <servlet-name>text</servlet-name>
 	  <url-pattern>/All</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	  <servlet-name>json</servlet-name>
+	  <servlet-class>com.bookService.BookList</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>json</servlet-name>
+	  <url-pattern>/json</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	  <servlet-name>xml</servlet-name>
+	  <servlet-class>com.bookService.BookList</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>xml</servlet-name>
+	  <url-pattern>/xml</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	  <servlet-name>Addbook</servlet-name>
+	  <servlet-class>com.bookService.addbook</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>Addbook</servlet-name>
+	  <url-pattern>/addbook</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>mybook.jsp</welcome-file>
