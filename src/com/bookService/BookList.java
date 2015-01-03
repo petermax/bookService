@@ -1,10 +1,5 @@
 package com.bookService;
 
-import org.json.*;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.*;
-import org.mortbay.util.ajax.JSON.Generator;
-
 import java.io.*;
 import java.util.*;
 
@@ -17,9 +12,6 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-
 
 public class BookList extends HttpServlet {
 	
@@ -36,9 +28,7 @@ public class BookList extends HttpServlet {
 	 	PreparedQuery pq = datastore.prepare(q);
 	 	
 	 	Collection <Book123> Books = new ArrayList<Book123>();
-	 	
-	 	
-	    
+	 		    
 	    for (Entity result : pq.asIterable()) {
 	    	String ID = (String) result.getProperty("name");
 	    	String author = (String) result.getProperty("author");
@@ -58,14 +48,6 @@ public class BookList extends HttpServlet {
 	    	  response.setContentType("text/plain");
 	    	  response.getWriter().println(Books);
 	      }
-
-	    /*for (int j = 0 ; j < Books.size() ; j++){
-	    	Book123 v = ((ArrayList<Book123>) Books).get(j);
-	    	response.getWriter().println(v.getAuthor());
-	    	response.getWriter().println(v.getTitle());
-	    	response.getWriter().println(v.getIsbn());
-	    	response.getWriter().println("<BR>");
-	    }*/
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
