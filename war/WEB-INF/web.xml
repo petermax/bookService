@@ -5,36 +5,12 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
-	    <servlet-name>bookService</servlet-name>
+	    <servlet-name>ShowBooks</servlet-name>
 	    <servlet-class>com.bookService.BookList</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>bookService</servlet-name>
-		<url-pattern>/bookService</url-pattern>
-	</servlet-mapping>
-	<servlet>
-	  <servlet-name>text</servlet-name>
-	  <servlet-class>com.bookService.BookList</servlet-class>
-	</servlet>
-	<servlet-mapping>
-	  <servlet-name>text</servlet-name>
-	  <url-pattern>/All</url-pattern>
-	</servlet-mapping>
-	<servlet>
-	  <servlet-name>json</servlet-name>
-	  <servlet-class>com.bookService.BookList</servlet-class>
-	</servlet>
-	<servlet-mapping>
-	  <servlet-name>json</servlet-name>
-	  <url-pattern>/json</url-pattern>
-	</servlet-mapping>
-	<servlet>
-	  <servlet-name>xml</servlet-name>
-	  <servlet-class>com.bookService.BookList</servlet-class>
-	</servlet>
-	<servlet-mapping>
-	  <servlet-name>xml</servlet-name>
-	  <url-pattern>/xml</url-pattern>
+		<servlet-name>ShowBooks</servlet-name>
+		<url-pattern>/show-books</url-pattern>
 	</servlet-mapping>
 	<servlet>
 	  <servlet-name>Addbook</servlet-name>
