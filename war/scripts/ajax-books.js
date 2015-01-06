@@ -46,13 +46,12 @@ function htmlInsert(id, htmlData) {
 //instead of just a result region.
 
 function ajaxPost(address, data, responseHandler) {
-var request = getRequestObject();
-request.onreadystatechange = 
- function() { responseHandler(request); };
-request.open("POST", address, true);
-request.setRequestHeader("Content-Type", 
+	var request = getRequestObject();
+	request.onreadystatechange = function() { responseHandler(request); };
+	request.open("POST", address, true);
+	request.setRequestHeader("Content-Type", 
                         "application/x-www-form-urlencoded");
-request.send(data);
+	request.send(data);
 }
 
 
@@ -91,16 +90,68 @@ function showXMLBookInfo(request, resultRegion) {
 	  if ((request.readyState == 4) &&
 	      (request.status == 200)) {
 		var xmlDocument = request.responseXML;
-	    var headings = getXmlValues(xmlDocument, "heading");
-	    var cities = xmlDocument.getElementsByTagName("city");
-	    var rows = new Array(cities.length);
-	    var subElementNames = ["name", "time", "population"];
-	    for(var i=0; i<cities.length; i++) {
-	      rows[i] = getElementValues(cities[i], subElementNames);
+		var headings = ["Author","Title","ISBN"];
+	    var books = xmlDocument.getElementsByTagName("Book");
+	    var rows = new Array(books.length);
+	    var subElementNames = ["author", "title", "isbn"];
+	    for(var i = 0; i<books.length; i++) {
+	      rows[i] = getElementValues(books[i], subElementNames);
 	    }
 	    var table = getTable(headings, rows);
+	    //var table = "<table border='1'><tr><th>" + rows + "</th></tr></table>";
 	    htmlInsert(resultRegion, table);
 	  }
+}
+
+//Given an element object and an array of sub-element names,
+//returns an array of the values of the sub-elements.
+//E.g., for <foo><a>one</a><c>two</c><b>three</b></foo>,
+//if the element points at foo,
+//getElementValues(element, ["a", "b", "c"]) would return
+//["one", "three", "two"]
+
+function getElementValues(element, subElementNames) {
+	var values = new Array(subElementNames.length);
+	for(var i=0; i<subElementNames.length; i++) {
+	 var name = subElementNames[i];
+	 var subElement = element.getElementsByTagName(name)[0];
+	 values[i] = getBodyContent(subElement);
+	}
+	return(values);
+}
+
+//Given an element, returns the body content.
+
+function getBodyContent(element) {
+  element.normalize();
+  return(element.childNodes[0].nodeValue);
+}
+
+function stringBookTable(inputField, resultRegion) {
+	  var address = "show-books";
+	  var data = "book=" + inputField +
+	             "&format=string";
+	  ajaxPost(address, data, 
+	           function(request) { 
+	             showStringBookInfo(request, resultRegion); 
+	           });
+	}
+
+function showStringBookInfo(request, resultRegion) {
+  if ((request.readyState == 4) &&
+      (request.status == 200)) {
+    var rawData = request.responseText;
+    rawData = rawData.replace("[","");
+    rawData = rawData.replace("#]","");
+    var rowStrings = rawData.split("#,");
+    var headings = ["ID","Author","Title","ISBN"];
+    var rows = new Array(rowStrings.length-1);
+    for(var i=0; i<rowStrings.length; i++) {
+      rows[i] = rowStrings[i].split(",");
+    }
+    var table = getTable(headings, rows);
+    htmlInsert(resultRegion, table);
+  }
 }
 
 //Takes as input an array of headings (to go into th elements)
@@ -122,12 +173,21 @@ function getTableHeadings(headings) {
 	  }
 	  firstRow += "</tr>\n";
 	  return(firstRow);
-	}
+}
 
 function getTableBody(rows) {
-  var body = "";
-  for(i = 0; i < rows.length; i++) {
-      body += '<tr><th>' + rows[i].author + '</th><th>' + rows[i].title + '</th><th>' + rows[i].isbn + '</th></tr>';
-  }
+	var body = "";
+	  for(var i=0; i<rows.length; i++) {
+	    body += "  <tr>";
+	    var row = rows[i];
+	    if (row == "[object Object]"){
+	    	body += "<td>" + row.author + "</td><td>" + row.title + "</td><td>" + row.isbn + "</td>";
+	    } else {
+		    for(var j=0; j<row.length; j++) {
+		      body += "<td>" + row[j] + "</td>";
+		    }
+	    }
+	    body += "</tr>\n";
+	  }
   return(body);
 }

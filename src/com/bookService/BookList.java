@@ -30,7 +30,7 @@ public class BookList extends HttpServlet {
 	 	// Use PreparedQuery interface to retrieve results
 	 	PreparedQuery pq = datastore.prepare(q);
 	 	
-	 	List <Book123> Books = new ArrayList<Book123>();
+	 	Collection <Book123> Books = new ArrayList<Book123>();
 	 	
 	 	
  		    

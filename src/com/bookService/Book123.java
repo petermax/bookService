@@ -43,6 +43,6 @@ public class Book123 {
 	}
 	
 	public String toString(){
-		return "id: " + this.bookID + ", Author: " + this.author + ", Title: " + this.title + ", ISBN: " + this.isbn;
+		return "id: " + this.bookID + ", Author: " + this.author + ", Title: " + this.title + ", ISBN: " + this.isbn + "#";
 	}
 }

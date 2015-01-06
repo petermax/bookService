@@ -9,7 +9,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <h3>It is now <%= new java.util.Date() %></h3>
-<input type="button" value="Show All books" onclick='ajaxResult("BookDetails", "book-result")'/>
+<input type="button" value="Show All books" onclick='stringBookTable("BookDetails", "book-result")'/>
 <div id="book-result"></div>
 <input type="button" value="Show All books JSON" onclick='jsonBookTable("BookDetails", "book-result-json")'/>
 <div id="book-result-json"></div>
