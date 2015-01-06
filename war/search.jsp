@@ -9,9 +9,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <h3>It is now <%= new java.util.Date() %></h3>
-<input type="button" value="Show All books" onclick='ajaxResult("BookDetails", "book-result")'/>
+
+<form action="addbook" method="post">
+	Search: <input type="text" name="frase">
+	<input type="button" value="Search books" onclick='ajaxResult("BookDetails", "book-result")'/>
+</form>
 <div id="book-result"></div>
-<input type="button" value="Show All books JSON" onclick='jsonBookTable("BookDetails", "book-result-json")'/>
-<div id="book-result-json"></div>
-<input type="button" value="Show All books XML" onclick='xmlBookTable("BookDetails", "book-result-xml")'/>
-<div id="book-result-xml"></div>

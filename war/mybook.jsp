@@ -17,7 +17,7 @@
 				<div id="ajax-tabbed-panel-div">
 					<ul>
 						<li><a href="addbook.jsp">Add book</a></li>
-						<li><a href="">Search Book</a></li>
+						<li><a href="search.jsp">Search Book</a></li>
 						<li><a href="all-books.jsp" >Display All Books</a></li>
 					</ul>
 				</div>

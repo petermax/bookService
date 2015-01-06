@@ -12,6 +12,10 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.gson.Gson;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
+import com.thoughtworks.xstream.io.json.JsonHierarchicalStreamDriver;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class BookList extends HttpServlet {
 	
@@ -26,8 +30,10 @@ public class BookList extends HttpServlet {
 	 	// Use PreparedQuery interface to retrieve results
 	 	PreparedQuery pq = datastore.prepare(q);
 	 	
-	 	Collection <Book123> Books = new ArrayList<Book123>();
-	 		    
+	 	List <Book123> Books = new ArrayList<Book123>();
+	 	
+	 	
+ 		    
 	    for (Entity result : pq.asIterable()) {
 	    	String ID = (String) result.getProperty("Name");
 	    	String author = (String) result.getProperty("author");
@@ -38,13 +44,15 @@ public class BookList extends HttpServlet {
 	    
 	    if ("xml".equals(format)) {
 	 		response.setContentType("text/xml");
-
+	 		XStream xstream = new XStream(new DomDriver());
+	 		xstream.alias("Book", Book123.class);
+	 		String xml = xstream.toXML(Books);
+	 		response.getWriter().println(xml);
 	      } else if ("json".equals(format)) {
 	    	  response.setContentType("text/javascript");
 	    	  Gson gson = new Gson();
 	    	  String json = gson.toJson(Books);
 	    	  response.getWriter().println(json);
-
 	      } else {
 	    	  response.setContentType("text/plain");
 	    	  response.getWriter().println(Books);

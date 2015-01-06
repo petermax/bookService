@@ -77,6 +77,32 @@ function showJsonBookInfo(request, resultRegion) {
 	  }
 }
 
+function xmlBookTable(inputField, resultRegion) {
+	  var address = "show-books";
+	  var data = "book=" + inputField +
+	             "&format=xml";
+	  ajaxPost(address, data, 
+	           function(request) { 
+	             showXMLBookInfo(request, resultRegion); 
+	           });
+}
+
+function showXMLBookInfo(request, resultRegion) {
+	  if ((request.readyState == 4) &&
+	      (request.status == 200)) {
+		var xmlDocument = request.responseXML;
+	    var headings = getXmlValues(xmlDocument, "heading");
+	    var cities = xmlDocument.getElementsByTagName("city");
+	    var rows = new Array(cities.length);
+	    var subElementNames = ["name", "time", "population"];
+	    for(var i=0; i<cities.length; i++) {
+	      rows[i] = getElementValues(cities[i], subElementNames);
+	    }
+	    var table = getTable(headings, rows);
+	    htmlInsert(resultRegion, table);
+	  }
+}
+
 //Takes as input an array of headings (to go into th elements)
 //and an array-of-arrays of rows (to go into td
 //elements). Builds an xhtml table from the data.
