@@ -10,17 +10,20 @@
 
 <h3>It is now <%= new java.util.Date() %></h3>
 <%
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+
+	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     //Key BookDetailsKey = KeyFactory.createKey("BookDetails", 415);
     Query q = new Query("BookDetails");
-    List <Entity> bookStored = datastore.prepare(q).asList(FetchOptions.Builder.withLimit(5));
+    List <Entity> bookStored = datastore.prepare(q).asList(FetchOptions.Builder.withLimit(50));
+    int records = bookStored.size();
     if (bookStored.isEmpty()){
     %>
     <p>No books in database</p>
     <% 	
     } else {
 	%>
-	<p>Some books in database</p>
+	<p><%out.print(records); %>	books in database</p>
 	<%
     }
 %>

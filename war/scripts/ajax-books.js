@@ -41,6 +41,13 @@ function htmlInsert(id, htmlData) {
   document.getElementById(id).innerHTML = htmlData;
 }
 
+//Return escaped value of textfield that has given id.
+//The builtin "escape" function url-encodes characters.
+
+function getValue(id) {
+return(escape(document.getElementById(id).value));
+}
+
 //Generalized version of ajaxResultPost. In this
 //version, you pass in a response handler function
 //instead of just a result region.
@@ -52,6 +59,16 @@ function ajaxPost(address, data, responseHandler) {
 	request.setRequestHeader("Content-Type", 
                         "application/x-www-form-urlencoded");
 	request.send(data);
+}
+
+function jsonBookSearch(inputField, resultRegion) {
+	  var address = "show-books";
+	  var data = "book=" + getValue(inputField) +
+	             "&format=json";
+	  ajaxPost(address, data, 
+	           function(request) { 
+	             showJsonBookInfo(request, resultRegion); 
+	           });
 }
 
 
